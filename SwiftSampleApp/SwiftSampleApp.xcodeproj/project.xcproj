@@ -13,10 +13,25 @@
   "files": [
     { "kind": "folder", "path": "SwiftSampleApp", "target-membership": [ "SwiftSampleApp" ] },
     {
+      "kind": "folder",
+      "path": "Live2DCubismFramework",
+      "target-membership": [
+        "Live2DCubismFramework",
+      ],
+      "membership-exceptions": [
+        {
+          "build-phase": "Live2DCubismFramework/copy/Copy Files",
+          "inclusions": [
+            "Live2DCubismFramework.h",
+          ],
+        },
+      ],
+    }, {
       "kind": "group",
       "name": "Products",
       "children": [
         { "path": "<PRODUCTS>/SwiftSampleApp.app", "id": "000000000000000000000120", "type": "wrapper.application", "index": false },
+        { "path": "<PRODUCTS>/libLive2DCubismFramework.a", "id": "EF92AC4930AB73B800B8454D", "type": "archive.ar", "index": false },
       ],
     },
   ],
@@ -64,6 +79,31 @@
         "SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY": "YES",
         "SWIFT_VERSION": "5.0",
         "TARGETED_DEVICE_FAMILY": "1,2,7",
+      },
+    }, {
+      "name": "Live2DCubismFramework",
+      "id": "EF92AC4830AB73B800B8454D",
+      "product": "Products/libLive2DCubismFramework.a",
+      "product-type": "library.static",
+      "build-phases": [
+        "compile-sources",
+        "frameworks",
+        {
+          "kind": "copy",
+          "name": "Copy Files",
+          "bundle-base-path": "build-products-directory",
+          "relative-path": "include/$(PRODUCT_NAME)",
+        },
+      ],
+      "build-settings": {
+        "CODE_SIGN_STYLE": "Automatic",
+        "DEVELOPMENT_TEAM": "TDS8R5PT2R",
+        "OTHER_LDFLAGS": "-ObjC",
+        "PRODUCT_NAME": "$(TARGET_NAME)",
+        "SDKROOT": "iphoneos",
+        "SKIP_INSTALL": "YES",
+        "TARGETED_DEVICE_FAMILY": "1,2",
+        "VALIDATE_PRODUCT[config=Release]": "YES",
       },
     },
   ],

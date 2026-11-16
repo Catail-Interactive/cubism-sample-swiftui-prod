@@ -16,7 +16,8 @@ This post is a hands-on tutorial about how to build a SwiftUI Xcode project from
 - Understand the composition of the Cubism SDK and the Sample app
 - Understand how to compile Objective-C/C++ code in a SwiftUI project
 - Understand how to (roughly) convert a UIKit-based app to a SwiftUI app
-  **Prerequisites**: To successfully go through this post, you'll need:
+
+**Prerequisites**: To successfully go through this post, you'll need:
 
 - [Cubism 5 SDK for Native R5](https://www.live2d.com/en/sdk/about/)
 - macOS and Xcode that can build and run an iOS project

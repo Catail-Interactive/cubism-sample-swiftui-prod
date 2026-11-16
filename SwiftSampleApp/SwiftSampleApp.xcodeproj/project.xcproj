@@ -153,7 +153,7 @@
           "name": "Copy Compiled Metal Shaders",
           "log-environment-variables": true,
           "input-file-list-paths": [
-            "$(SRCROOT)/SwiftSampleApp/CopyCompiledMetalShaderIntputs.xcfilelist",
+            "$(SRCROOT)/SwiftSampleApp/CopyCompiledMetalShaderInputs.xcfilelist",
           ],
           "output-file-list-paths": [
             "$(SRCROOT)/SwiftSampleApp/CopyCompiledMetalShaderOutputs.xcfilelist",

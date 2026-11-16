@@ -6,6 +6,11 @@ import SwiftUI
     var body: some Scene {
         WindowGroup {
             Live2DView().ignoresSafeArea()
+                .overlay {
+                    Text("Swift UI Overlay")
+                        .font(.largeTitle)
+                        .foregroundStyle(Color.red)
+                }
         }
     }
 }

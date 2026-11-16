@@ -170,9 +170,11 @@ Next, copy the Sample app code to the project:
 
 ### Configure the project to build the framework and the app
 
-We need to configure the project to build the framework and the app separately. This is probably frustrating because the Xcode UI may be a little complicated to play with. The following is a step-by-step list to configure the project. Note that this configuration is not complete yet, and we will come back to it when we see compilation errors later.
-
 > When you are working on this part, make sure you select the right target on the left panel of the project settings. Each target has its own settings.
+
+> Note that if you do not see any build setting item above, try to switch to "All" on the second row of the Build Settings tab. If you see names in constant style, e.g., "SWIFT_OBJC_BRIDGING_HEADER", switch to "Title" from "Names" on the second row. For more details about build settings, check out the [build settings reference](https://developer.apple.com/documentation/xcode/build-settings-reference).
+
+We need to configure the project to build the framework and the app separately. This is probably frustrating because the Xcode UI may be a little complicated to play with. The following is a step-by-step list to configure the project. Note that this configuration is not complete yet, and we will come back to it when we see compilation errors later.
 
 **For the framework target:**
 
@@ -194,8 +196,6 @@ There are 3 things to set here: header search path, Swift/C++ interop, and bridg
   - "User Header Search Paths" = `Live2DCubismSample/stb`, non-recursive
   - "C++ and Objective-C Interoperability" = "C++ / Objective-C++"
   - "Bridging Header" = `Live2DCubismSample/src/cubism_bridge_header.h`
-
-> Note that if you do not see any build setting item above, try to switch to "All" on the second row of the Build Settings tab. If you see names in constant style, e.g., "SWIFT_OBJC_BRIDGING_HEADER", switch to "Title" from "Names" on the second row. For more details about build settings, check out the [build settings reference](https://developer.apple.com/documentation/xcode/build-settings-reference).
 
 ## Step 3: Compile Everything In Xcode
 

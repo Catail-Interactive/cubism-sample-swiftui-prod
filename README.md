@@ -99,7 +99,7 @@ xcodebuild -create-xcframework \
   -output Live2DCubismCore.xcframework
 ```
 
-After that, you should see a `Live2DCubismCore.xcframework` folder there:
+After that, you should see a `Live2DCubismCore.xcframework` folder there (as follows). We will need it when compiling the Cubism Framework.
 
 ```sh
 Live2DCubismCore.xcframework
@@ -113,8 +113,6 @@ Live2DCubismCore.xcframework
     │   └── Live2DCubismCore.h
     └── libLive2DCubismCore.a
 ```
-
-We will need it when compiling the Cubism Framework.
 
 ## Step 2: Build And Configure An Xcode Project
 
@@ -141,7 +139,8 @@ We need to copy the source files from the Framework and the Sample app to the Xc
 - Set the product name `Live2DCubismFramework`.
 - Set the language `Objective-C`.
 - Click Finish to create the target.
-  You should see a new folder `Live2DCubismFramework` in the navigators. Next, we need to copy the source code from the Framework in the SDK:
+  
+You should see a new folder `Live2DCubismFramework` in the navigators. Next, we need to copy the source code from the Framework in the SDK:
 
 - In the SDK folder, find `Framework/src`
 - Drag the whole `src` folder into the `Live2DCubismFramework` folder in the Xcode navigators

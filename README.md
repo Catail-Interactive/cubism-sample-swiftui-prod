@@ -181,7 +181,8 @@ Let's start with the framework target. The Framework C++ code needs to know wher
 - Under Build Settings:
   - "System Header Search Paths" = `Live2DCubismFramework/src`, non-recursive.
   - "User Header Search Paths" = `Live2DCubismFramework/src`, recursive.
-    **For the app target:**
+
+**For the app target:**
 
 There are 3 things to set here: header search path, Swift/C++ interop, and bridge header. Like the framework, some Sample app code needs to know about the Framework header. Also, because we are compiling the ObjC/C++ Sample code in our Swift project, we need to enable interop and add a bridge header.
 

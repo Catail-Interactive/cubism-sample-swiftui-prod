@@ -38,7 +38,8 @@ This post is a hands-on tutorial about how to build a SwiftUI Xcode project from
   - Compile the Framework
   - Clean up and compile the Sample app code
 - Build a SwiftUI app from the UIKit Sample app
-  - Remove SceneDelegate and move data to AppDelegate
+  - Migrate to SwiftUI: Remove SceneDelegate and New States
+  - Wire up the AppDelegate and ViewController to SwiftUI
   - Add missing resources to the app bundle
   - Build and test on a simulator and a physical device
 
@@ -139,7 +140,7 @@ We need to copy the source files from the Framework and the Sample app to the Xc
 - Set the product name `Live2DCubismFramework`.
 - Set the language `Objective-C`.
 - Click Finish to create the target.
-  
+
 You should see a new folder `Live2DCubismFramework` in the navigators. Next, we need to copy the source code from the Framework in the SDK:
 
 - In the SDK folder, find `Framework/src`
@@ -382,13 +383,17 @@ At this point, the compiler starts complaining about undefined symbols in the ap
 
 ### Migrate to SwiftUI: Remove SceneDelegate and New States
 
+> You can find the patched files in [SwiftSampleApp/Live2DCubismSample/src](SwiftSampleApp/Live2DCubismSample/src).
+
+> For your reference, we keep a copy of the changes we made in [changes.patch](changes.patch). It may help you find where to patch the source code. Note that the best source of truth is still your compiler and its error messages. Also, Xcode does not report compiler errors in Objective-C/C++ code, only issues and warnings. Check the Xcode Issue Navigator for any glaring issues in those files.
+
 The original sample code is based on UIKit and comes with SceneDelegate. This is the UIKit way to manage the life-cycle events in a scene ([see UISceneDelegate](https://developer.apple.com/documentation/uikit/uiscenedelegate)). SwiftUI has a new life-cycle system to manage the scene, so we no longer need the scene delegate in our project. To remove it from our project:
 
 1. Remove SceneDelegate.mm and SceneDelegate.h from `Live2DCubismSample/src`.
 1. Remove scene-related imports and processes from the source code.
 1. Move states managed by the scene delegate to somewhere else.
 
-The first step should be easy; however, the other two steps may be ambiguous. Here comes the most difficult part of this tutorial: we need to replace the scene delegate and transfer its responsibility to somewhere else, such as AppDelegate. Here we briefly explain what we did to those files. If you get lost, you can just download a complete copy of those files from our repository.
+The first step should be easy; however, the other two steps may be ambiguous. Here comes the most difficult part of this tutorial: we need to replace the scene delegate and transfer its responsibility to somewhere else, such as AppDelegate. Here we briefly explain what we did to those files. If you get lost, you can just download a complete copy of those files from our repository. See [SwiftSampleApp/Live2DCubismSample/src](SwiftSampleApp/Live2DCubismSample/src) for more details.
 
 Here is the work:
 

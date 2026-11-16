@@ -44,9 +44,8 @@
 
 - (TextureInfo*) createTextureFromPngFile:(std::string)fileName
 {
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    SceneDelegate* sceneDelegate = [appDelegate getActiveSceneDelegate];
-    ViewController* viewController = [sceneDelegate viewController];
+    // Patch
+    ViewController *viewController = [[AppDelegate sharedInstance] viewController];
 
     //search loaded texture already.
     for (Csm::csmUint32 i = 0; i < _textures.GetSize(); i++)

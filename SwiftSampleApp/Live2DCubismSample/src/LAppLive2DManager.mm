@@ -199,9 +199,9 @@ Csm::csmString GetPath(CFURLRef url)
 
 - (void)onTap:(Csm::csmFloat32)x floatY:(Csm::csmFloat32)y;
 {
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    SceneDelegate* sceneDelegate = [appDelegate getActiveSceneDelegate];
-    ViewController* view = [sceneDelegate viewController];
+    // Patch
+    ViewController *view = [[AppDelegate sharedInstance] viewController];
+    
     int width = [view getWindowWidth];
     int height = [view getWindowHeight];
     float aspectRatio = static_cast<float>(width) / static_cast<float>(height);
@@ -247,9 +247,8 @@ Csm::csmString GetPath(CFURLRef url)
 
 - (void)onUpdate:(id <MTLCommandBuffer>)commandBuffer currentDrawable:(id<CAMetalDrawable>)drawable depthTexture:(id<MTLTexture>)depthTarget;
 {
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    SceneDelegate* sceneDelegate = [appDelegate getActiveSceneDelegate];
-    ViewController* view = [sceneDelegate viewController];
+    // Patch
+    ViewController *view = [[AppDelegate sharedInstance] viewController];
 
     int width = [view getWindowWidth];
     int height = [view getWindowHeight];
@@ -503,9 +502,8 @@ Csm::csmString GetPath(CFURLRef url)
         float clearColorG = 0.0f;
         float clearColorB = 0.0f;
 
-        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-        SceneDelegate* sceneDelegate = [appDelegate getActiveSceneDelegate];
-        ViewController* view = [sceneDelegate viewController];
+        // Patch
+        ViewController *view = [[AppDelegate sharedInstance] viewController];
 
         [self SwitchRenderingTarget:useRenderTarget];
         [self SetRenderTargetClearColor:clearColorR g:clearColorG b:clearColorB];

@@ -142,10 +142,11 @@
       "build-phases": [
         "compile-sources",
         "frameworks",
+        "resources",
         {
           "kind": "copy",
           "name": "Copy Live2D Resources",
-          "bundle-base-path": "resources-directory",
+          "bundle-base-path": "executables-directory",
           "relative-path": "Res",
         }, {
           "kind": "script",
@@ -185,7 +186,6 @@
             "",
           ],
         },
-        "resources",
       ],
       "build-settings": {
         "CODE_SIGN_STYLE": "Automatic",

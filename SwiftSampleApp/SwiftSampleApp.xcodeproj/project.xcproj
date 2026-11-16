@@ -11,8 +11,26 @@
     ],
   },
   "files": [
-    { "kind": "folder", "path": "SwiftSampleApp", "target-membership": [ "SwiftSampleApp" ] },
+    { "path": "Live2DCubismSample/src/Shaders", "target-membership": [ "SwiftSampleApp/resources" ] },
+    { "path": "../CubismSdkForNative-5-r.5/Samples/Resources", "target-membership": [ "SwiftSampleApp/copy/Copy Live2D Resources" ] },
     {
+      "kind": "folder",
+      "path": "SwiftSampleApp",
+      "target-membership": [
+        "SwiftSampleApp",
+      ],
+      "membership-exceptions": [
+        {
+          "target": "SwiftSampleApp",
+          "exclusions": [
+            "BundleInputs.xcfilelist",
+            "BundleOutputs.xcfilelist",
+            "MetalInputs.xcfilelist",
+            "MetalOutputs.xcfilelist",
+          ],
+        },
+      ],
+    }, {
       "kind": "folder",
       "path": "Live2DCubismFramework",
       "target-membership": [
@@ -73,7 +91,6 @@
           },
           "inclusions": [
             "src/AppDelegate.mm",
-            "src/CMakeLists.txt",
             "src/LAppAllocator.mm",
             "src/LAppDefine.mm",
             "src/LAppLive2DManager.mm",
@@ -87,7 +104,6 @@
             "src/Shaders/SpriteEffect.metal",
             "src/TouchManager.mm",
             "src/ViewController.mm",
-            "stb/README.md",
           ],
         }, {
           "target": "Live2DCubismFramework",
@@ -128,6 +144,49 @@
       "build-phases": [
         "compile-sources",
         "frameworks",
+        {
+          "kind": "copy",
+          "name": "Copy Live2D Resources",
+          "bundle-base-path": "resources-directory",
+          "relative-path": "Res",
+        }, {
+          "kind": "script",
+          "name": "Copy Compiled Metal Shaders",
+          "log-environment-variables": true,
+          "input-file-list-paths": [
+            "$(SRCROOT)/SwiftSampleApp/CopyCompiledMetalShaderIntputs.xcfilelist",
+          ],
+          "output-file-list-paths": [
+            "$(SRCROOT)/SwiftSampleApp/CopyCompiledMetalShaderOutputs.xcfilelist",
+          ],
+          "shell": "/bin/sh",
+          "script": [
+            "set -e",
+            "",
+            "SRC=\"${BUILT_PRODUCTS_DIR}/FrameworkShaders/FrameworkMetallibs\"",
+            "DST=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FrameworkMetallibs\"",
+            "if [ ! -d \"$SRC\" ]; then",
+            "  echo \"Failed: Framework metallibs not found at $SRC\"",
+            "  exit 1",
+            "fi",
+            "",
+            "mkdir -p \"$DST\"",
+            "",
+            "found=0",
+            "for lib in \"$SRC\"/*.metallib; do",
+            "  [ -e \"$lib\" ] || continue",
+            "  cp -f \"$lib\" \"$DST/\"",
+            "  echo \"Copied $(basename \"$lib\") to $DST\"",
+            "  found=1",
+            "done",
+            "",
+            "if [ \"$found\" -eq 0 ]; then",
+            "  echo \"Failed: No .metallib files found in $SRC\"",
+            "  exit 1",
+            "fi",
+            "",
+          ],
+        },
         "resources",
       ],
       "build-settings": {

@@ -133,7 +133,7 @@ typedef struct
     id <MTLDevice> device = [viewController getDevice];
     [self SetMTLBuffer:device MaxWidth:maxWidth MaxHeight:maxHeight];
 
-    // return self;  // not allowed
+    // return self;  // patch from demo-cubism-swiftui
 }
 
 - (bool)isHit:(float)pointX PointY:(float)pointY
@@ -215,7 +215,7 @@ typedef struct
     if (!vertexProgram)
     {
         NSLog(@">> ERROR: Couldn't load vertex function from default library");
-        return nil;
+        return;  // return nil; patch from demo-cubism-swiftui.
     }
 
     //フラグメントシェーダの取得
@@ -223,7 +223,7 @@ typedef struct
     if (!fragmentProgram)
     {
         NSLog(@" ERROR: Couldn't load fragment function from default library");
-        return nil;
+        return;  // return nil; patch from demo-cubism-swiftui.
     }
 
     [self SetMTLRenderPipelineDescriptor:device vertexProgram:vertexProgram fragmentProgram:fragmentProgram];
@@ -269,7 +269,7 @@ typedef struct
     if (!_pipelineState)
     {
         NSLog(@"ERROR: Failed aquiring pipeline state: %@", error);
-        return nil;
+        return;  // return nil; patch from demo-cubism-swiftui.
     }
 }
 @end

@@ -13,7 +13,6 @@
 #import "LAppPal.h"
 #import "LAppTextureManager.h"
 #import "AppDelegate.h"
-#import "SceneDelegate.h"
 #import "ViewController.h"
 #import <CubismDefaultParameterId.hpp>
 #import <CubismModelSettingJson.hpp>
@@ -91,9 +90,8 @@ LAppModel::~LAppModel()
         ReleaseMotionGroup(group);
     }
 
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    SceneDelegate* sceneDelegate = [appDelegate getActiveSceneDelegate];
-    LAppTextureManager *textureManager = [sceneDelegate getTextureManager];
+    // patch
+    LAppTextureManager *textureManager = [[AppDelegate sharedInstance] getTextureManager];
 
     for (csmInt32 modelTextureNumber = 0; modelTextureNumber < _modelSetting->GetTextureCount(); modelTextureNumber++)
     {
@@ -136,9 +134,8 @@ void LAppModel::LoadAssets(const csmChar* dir, const csmChar* fileName)
         return;
     }
 
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    SceneDelegate* sceneDelegate = [appDelegate getActiveSceneDelegate];
-    ViewController* view = [sceneDelegate viewController];
+    // patch
+    ViewController *view = [[AppDelegate sharedInstance] viewController];
 
     const CGFloat retinaScale = [[UIScreen mainScreen] scale];
     // Retinaディスプレイサイズにするため倍率をかける
@@ -610,9 +607,8 @@ void LAppModel::ReloadRenderer()
 {
     DeleteRenderer();
 
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    SceneDelegate* sceneDelegate = [appDelegate getActiveSceneDelegate];
-    ViewController* view = [sceneDelegate viewController];
+    // patch
+    ViewController *view = [[AppDelegate sharedInstance] viewController];
 
     const CGFloat retinaScale = [[UIScreen mainScreen] scale];
     // Retinaディスプレイサイズにするため倍率をかける
@@ -637,9 +633,9 @@ void LAppModel::SetupTextures()
         csmString texturePath = _modelSetting->GetTextureFileName(modelTextureNumber);
         texturePath = _modelHomeDir + texturePath;
 
-        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-        SceneDelegate* sceneDelegate = [appDelegate getActiveSceneDelegate];
-        TextureInfo* texture = [[sceneDelegate getTextureManager] createTextureFromPngFile:texturePath.GetRawString()];
+        // patch
+        TextureInfo *texture = [[[AppDelegate sharedInstance] getTextureManager]
+            createTextureFromPngFile:texturePath.GetRawString()];
         id <MTLTexture> mtlTextueNumber = texture->id;
 
         //Metal

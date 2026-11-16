@@ -19,7 +19,6 @@
 #pragma clang diagnostic pop
 #import "LAppPal.h"
 #import "AppDelegate.h"
-#import "SceneDelegate.h"
 #import "ViewController.h"
 #import "MetalUIView.h"
 

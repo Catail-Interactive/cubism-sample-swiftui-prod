@@ -8,7 +8,6 @@
 #import "LAppSprite.h"
 #import <Foundation/Foundation.h>
 #import "AppDelegate.h"
-#import "SceneDelegate.h"
 #import "LAppDefine.h"
 #import "LAppPal.h"
 #import <CubismFramework.hpp>

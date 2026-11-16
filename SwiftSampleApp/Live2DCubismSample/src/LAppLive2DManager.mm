@@ -10,7 +10,6 @@
 #import <stdlib.h>
 #import <Foundation/Foundation.h>
 #import "AppDelegate.h"
-#import "SceneDelegate.h"
 #import "ViewController.h"
 #import "LAppModel.h"
 #import "LAppDefine.h"

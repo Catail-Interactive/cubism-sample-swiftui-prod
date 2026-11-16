@@ -13,7 +13,6 @@
 #import <string>
 #import "CubismFramework.hpp"
 #import "AppDelegate.h"
-#import "SceneDelegate.h"
 #import "LAppSprite.h"
 #import "LAppDefine.h"
 #import "LAppLive2DManager.h"

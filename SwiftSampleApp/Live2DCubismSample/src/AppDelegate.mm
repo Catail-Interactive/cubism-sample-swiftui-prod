@@ -13,31 +13,36 @@
 #import "LAppDefine.h"
 #import "LAppLive2DManager.h"
 
+// patch
+static AppDelegate *s_instance = nil;
+
 @interface AppDelegate ()
 
 @property (nonatomic) LAppAllocator cubismAllocator; // Cubism SDK Allocator
 @property (nonatomic) Csm::CubismFramework::Option cubismOption; // Cubism SDK Option
 @property (nonatomic) bool isEnd; // APPを終了しているか
-
+// patch
+@property(nonatomic) LAppTextureManager *textureManager;
 @end
 
 @implementation AppDelegate
 
+// patch
++ (instancetype)sharedInstance {
+    return s_instance;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // patch
+    s_instance = self;
+    
     [self initializeCubism];
-    return YES;
-}
+    
+    // patch
+    _textureManager = [[LAppTextureManager alloc] init];
 
-- (UISceneConfiguration *)application:(UIApplication *)application
-        configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession
-                                      options:(UISceneConnectionOptions *)options {
-    UISceneConfiguration *config = [[UISceneConfiguration alloc]
-                                    initWithName:@"Default Configuration"
-                                    sessionRole:connectingSceneSession.role];
-    config.delegateClass = [SceneDelegate class];
-    return config;
+    return YES;
 }
 
 - (void)initializeCubism
@@ -64,25 +69,9 @@
 
 - (void)finishApplication
 {
-    // アクティブなSceneを取得
-    UIWindowScene *activeScene = nil;
-    for (UIScene *scene in [UIApplication sharedApplication].connectedScenes)
-    {
-        if (scene.activationState == UISceneActivationStateForegroundActive)
-        {
-            activeScene = (UIWindowScene *)scene;
-            break;
-        }
-    }
-
-    if (activeScene)
-    {
-        SceneDelegate *sceneDelegate = (SceneDelegate *)activeScene.delegate;
-        [sceneDelegate.viewController release];
-        sceneDelegate.viewController = nil;
-        [sceneDelegate.window release];
-        sceneDelegate.window = nil;
-    }
+    // patch
+    [_textureManager release];
+    _textureManager = nil;
 
     [LAppLive2DManager releaseInstance];
 
@@ -93,17 +82,18 @@
     exit(0);
 }
 
-- (SceneDelegate*)getActiveSceneDelegate
-{
-    // UIApplicationSupportsMultipleScenesがfalseなので、シーンは1つのみ
-    for (UIScene *scene in [UIApplication sharedApplication].connectedScenes)
-    {
-        if ([scene.delegate isKindOfClass:[SceneDelegate class]])
-        {
-            return (SceneDelegate *)scene.delegate;
-        }
+// patch
+- (void)applicationWillTerminate:(UIApplication *)application {
+    if (!_isEnd) {
+        [LAppLive2DManager releaseInstance];
+        Csm::CubismFramework::Dispose();
+        _isEnd = true;
     }
-    return nil;
+}
+
+// patch
+- (LAppTextureManager *)getTextureManager {
+    return _textureManager;
 }
 
 @end

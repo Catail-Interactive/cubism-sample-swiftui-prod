@@ -129,6 +129,12 @@ using namespace LAppDefine;
     [self initializeScreen];
 }
 
+// Patch
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self initializeSprite];
+}
+
 - (void)initializeScreen
 {
     UIWindowScene *windowScene = (UIWindowScene *)[UIApplication sharedApplication].connectedScenes.anyObject;
@@ -277,7 +283,10 @@ using namespace LAppDefine;
     float height = windowScene.screen.bounds.size.height - insets.top - insets.bottom;
 #endif
 
-    LAppTextureManager* textureManager = [self.sceneDelegate getTextureManager];
+    // Patch
+    LAppTextureManager *textureManager =
+        [[AppDelegate sharedInstance] getTextureManager];
+    
     const string resourcesPath = ResourcesPath;
 
     string imageName;

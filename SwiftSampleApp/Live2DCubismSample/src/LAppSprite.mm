@@ -52,9 +52,9 @@ typedef struct
         _vertexBuffer = nil;
         _fragmentBuffer = nil;
 
-        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-        SceneDelegate* sceneDelegate = [appDelegate getActiveSceneDelegate];
-        ViewController* viewController = [sceneDelegate viewController];
+        // Patch
+        ViewController *viewController = [[AppDelegate sharedInstance] viewController];
+        
         id <MTLDevice> device = [viewController getDevice];
 
         [self SetMTLBuffer:device MaxWidth:maxWidth MaxHeight:maxHeight];
@@ -90,9 +90,8 @@ typedef struct
 
 - (void)renderImmidiate:(id<MTLRenderCommandEncoder>)renderEncoder
 {
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    SceneDelegate* sceneDelegate = [appDelegate getActiveSceneDelegate];
-    ViewController* viewController = [sceneDelegate viewController];
+    // Patch
+    ViewController *viewController = [[AppDelegate sharedInstance] viewController];
     id <MTLDevice> device = [viewController getDevice];
 
     float width = _rect.right - _rect.left;
@@ -126,9 +125,9 @@ typedef struct
     _rect.up = (y + height * 0.5f);
     _rect.down = (y - height * 0.5f);
 
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    SceneDelegate* sceneDelegate = [appDelegate getActiveSceneDelegate];
-    ViewController* viewController = [sceneDelegate viewController];
+    // Patch
+    ViewController *viewController = [[AppDelegate sharedInstance] viewController];
+
     id <MTLDevice> device = [viewController getDevice];
     [self SetMTLBuffer:device MaxWidth:maxWidth MaxHeight:maxHeight];
 

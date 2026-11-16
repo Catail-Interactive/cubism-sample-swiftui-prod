@@ -253,3 +253,75 @@ index 7ee6beb..0b63a5f 100644
  #import "LAppSprite.h"
  #import "LAppDefine.h"
  #import "LAppLive2DManager.h"
+
+diff --git a/SwiftSampleApp/Live2DCubismSample/src/LAppSprite.mm b/SwiftSampleApp/Live2DCubismSample/src/LAppSprite.mm
+index 64fb8c2..8639c17 100644
+--- a/SwiftSampleApp/Live2DCubismSample/src/LAppSprite.mm
++++ b/SwiftSampleApp/Live2DCubismSample/src/LAppSprite.mm
+@@ -52,9 +52,9 @@ - (id)initWithMyVar:(float)x Y:(float)y Width:(float)width Height:(float)height
+         _vertexBuffer = nil;
+         _fragmentBuffer = nil;
+ 
+-        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+-        SceneDelegate* sceneDelegate = [appDelegate getActiveSceneDelegate];
+-        ViewController* viewController = [sceneDelegate viewController];
++        // Patch
++        ViewController *viewController = [[AppDelegate sharedInstance] viewController];
++        
+         id <MTLDevice> device = [viewController getDevice];
+ 
+         [self SetMTLBuffer:device MaxWidth:maxWidth MaxHeight:maxHeight];
+@@ -90,9 +90,8 @@ - (void)dealloc
+ 
+ - (void)renderImmidiate:(id<MTLRenderCommandEncoder>)renderEncoder
+ {
+-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+-    SceneDelegate* sceneDelegate = [appDelegate getActiveSceneDelegate];
+-    ViewController* viewController = [sceneDelegate viewController];
++    // Patch
++    ViewController *viewController = [[AppDelegate sharedInstance] viewController];
+     id <MTLDevice> device = [viewController getDevice];
+ 
+     float width = _rect.right - _rect.left;
+@@ -126,9 +125,9 @@ - (void)resizeImmidiate:(float)x Y:(float)y Width:(float)width Height:(float)hei
+     _rect.up = (y + height * 0.5f);
+     _rect.down = (y - height * 0.5f);
+ 
+-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+-    SceneDelegate* sceneDelegate = [appDelegate getActiveSceneDelegate];
+-    ViewController* viewController = [sceneDelegate viewController];
++    // Patch
++    ViewController *viewController = [[AppDelegate sharedInstance] viewController];
++
+     id <MTLDevice> device = [viewController getDevice];
+     [self SetMTLBuffer:device MaxWidth:maxWidth MaxHeight:maxHeight];
+ 
+diff --git a/SwiftSampleApp/Live2DCubismSample/src/ViewController.mm b/SwiftSampleApp/Live2DCubismSample/src/ViewController.mm
+index 0b63a5f..1fd9d4d 100644
+--- a/SwiftSampleApp/Live2DCubismSample/src/ViewController.mm
++++ b/SwiftSampleApp/Live2DCubismSample/src/ViewController.mm
+@@ -129,6 +129,12 @@ - (void)viewDidLoad
+     [self initializeScreen];
+ }
+ 
++// Patch
++- (void)viewDidAppear:(BOOL)animated {
++    [super viewDidAppear:animated];
++    [self initializeSprite];
++}
++
+ - (void)initializeScreen
+ {
+     UIWindowScene *windowScene = (UIWindowScene *)[UIApplication sharedApplication].connectedScenes.anyObject;
+@@ -277,7 +283,10 @@ - (void)initializeSprite
+     float height = windowScene.screen.bounds.size.height - insets.top - insets.bottom;
+ #endif
+ 
+-    LAppTextureManager* textureManager = [self.sceneDelegate getTextureManager];
++    // Patch
++    LAppTextureManager *textureManager =
++        [[AppDelegate sharedInstance] getTextureManager];
++    
+     const string resourcesPath = ResourcesPath;
+ 
+     string imageName;

@@ -51,7 +51,7 @@
       "name": "Products",
       "children": [
         { "path": "<PRODUCTS>/SwiftSampleApp.app", "id": "000000000000000000000120", "type": "wrapper.application", "index": false },
-        { "path": "<PRODUCTS>/libLive2DCubismFramework.a", "id": "EF92AC4930AB73B800B8454D", "type": "archive.ar", "index": false },
+        { "path": "<PRODUCTS>/libLive2DCubismFramework.a", "id": "EF92AC4930AB73B800B8454D", "type": "archive.ar", "index": false, "target-membership": [ { "build-phase": "SwiftSampleApp/frameworks", "platforms": [ "ios" ] } ] },
       ],
     }, {
       "kind": "folder",
@@ -62,6 +62,15 @@
       "membership-exceptions": [
         {
           "target": "SwiftSampleApp",
+          "compiler-flags": {
+            "src/AppDelegate.mm": "-fno-objc-arc",
+            "src/LAppLive2DManager.mm": "-fno-objc-arc",
+            "src/LAppModelSprite.mm": "-fno-objc-arc",
+            "src/LAppSprite.mm": "-fno-objc-arc",
+            "src/LAppTextureManager.mm": "-fno-objc-arc",
+            "src/MetalView.m": "-fno-objc-arc",
+            "src/ViewController.mm": "-fno-objc-arc",
+          },
           "inclusions": [
             "src/AppDelegate.mm",
             "src/CMakeLists.txt",
@@ -75,7 +84,6 @@
             "src/LAppTextureManager.mm",
             "src/MetalUIView.m",
             "src/MetalView.m",
-            "src/SceneDelegate.mm",
             "src/Shaders/SpriteEffect.metal",
             "src/TouchManager.mm",
             "src/ViewController.mm",
@@ -104,6 +112,13 @@
       ],
     },
     { "path": "Live2DCubismCore.xcframework", "target-membership": [ "Live2DCubismFramework/frameworks" ] },
+    {
+      "kind": "group",
+      "name": "Frameworks",
+      "children": [
+        { "path": "<DEVELOPER>/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS27.2.sdk/System/Library/Frameworks/MetalKit.framework", "target-membership": [ "SwiftSampleApp/frameworks" ] },
+      ],
+    },
   ],
   "targets": [
     {

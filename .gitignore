@@ -1,6 +1,8 @@
 CubismSdkForNative-5-r.5/
 Live2DCubismCore.xcframework/
 SwiftSampleApp/Live2DCubismFramework/src
+SwiftSampleApp/Live2DCubismSample/src
+SwiftSampleApp/Live2DCubismSample/stb
 
 *.zip
 

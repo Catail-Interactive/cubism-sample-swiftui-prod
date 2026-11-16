@@ -23,8 +23,6 @@
         {
           "target": "SwiftSampleApp",
           "exclusions": [
-            "BundleInputs.xcfilelist",
-            "BundleOutputs.xcfilelist",
             "MetalInputs.xcfilelist",
             "MetalOutputs.xcfilelist",
           ],

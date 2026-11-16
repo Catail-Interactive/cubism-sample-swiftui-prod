@@ -103,7 +103,6 @@
             "src/LAppTextureManager.mm",
             "src/MetalUIView.m",
             "src/MetalView.m",
-            "src/SceneDelegate.mm",
             "src/Shaders/SpriteEffect.metal",
             "src/TouchManager.mm",
             "src/ViewController.mm",

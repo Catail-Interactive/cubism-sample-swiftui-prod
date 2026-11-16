@@ -1,0 +1,14 @@
+$(SRCROOT)/Live2DCubismFramework/src/Rendering/Metal/Shaders/BlendShaderFuncs.h
+$(SRCROOT)/Live2DCubismFramework/src/Rendering/Metal/Shaders/BlendShaderStructs.h
+$(SRCROOT)/Live2DCubismFramework/src/Rendering/Metal/Shaders/MetalShaderTypes.h
+$(SRCROOT)/Live2DCubismFramework/src/Rendering/Metal/Shaders/FragShaderSrcAlphaBlend.metal
+$(SRCROOT)/Live2DCubismFramework/src/Rendering/Metal/Shaders/FragShaderSrcBlend.metal
+$(SRCROOT)/Live2DCubismFramework/src/Rendering/Metal/Shaders/FragShaderSrcColorBlend.metal
+$(SRCROOT)/Live2DCubismFramework/src/Rendering/Metal/Shaders/FragShaderSrcMaskBlend.metal
+$(SRCROOT)/Live2DCubismFramework/src/Rendering/Metal/Shaders/FragShaderSrcMaskInvertedBlend.metal
+$(SRCROOT)/Live2DCubismFramework/src/Rendering/Metal/Shaders/FragShaderSrcMaskInvertedPremultipliedAlphaBlend.metal
+$(SRCROOT)/Live2DCubismFramework/src/Rendering/Metal/Shaders/FragShaderSrcMaskPremultipliedAlphaBlend.metal
+$(SRCROOT)/Live2DCubismFramework/src/Rendering/Metal/Shaders/FragShaderSrcPremultipliedAlphaBlend.metal
+$(SRCROOT)/Live2DCubismFramework/src/Rendering/Metal/Shaders/MetalShaders.metal
+$(SRCROOT)/Live2DCubismFramework/src/Rendering/Metal/Shaders/VertShaderSrcBlend.metal
+$(SRCROOT)/Live2DCubismFramework/src/Rendering/Metal/Shaders/VertShaderSrcMaskedBlend.metal

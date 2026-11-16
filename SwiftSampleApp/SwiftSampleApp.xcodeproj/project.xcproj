@@ -20,6 +20,26 @@
       ],
       "membership-exceptions": [
         {
+          "target": "Live2DCubismFramework",
+          "compiler-flags": {
+            "src/Rendering/Metal/CubismCommandBuffer_Metal.mm": "-fno-objc-arc",
+            "src/Rendering/Metal/CubismRenderTarget_Metal.mm": "-fno-objc-arc",
+            "src/Rendering/Metal/CubismShader_Metal.mm": "-fno-objc-arc",
+          },
+          "exclusions": [
+            "src/Rendering/Metal/Shaders/FragShaderSrcAlphaBlend.metal",
+            "src/Rendering/Metal/Shaders/FragShaderSrcBlend.metal",
+            "src/Rendering/Metal/Shaders/FragShaderSrcColorBlend.metal",
+            "src/Rendering/Metal/Shaders/FragShaderSrcMaskBlend.metal",
+            "src/Rendering/Metal/Shaders/FragShaderSrcMaskInvertedBlend.metal",
+            "src/Rendering/Metal/Shaders/FragShaderSrcMaskInvertedPremultipliedAlphaBlend.metal",
+            "src/Rendering/Metal/Shaders/FragShaderSrcMaskPremultipliedAlphaBlend.metal",
+            "src/Rendering/Metal/Shaders/FragShaderSrcPremultipliedAlphaBlend.metal",
+            "src/Rendering/Metal/Shaders/MetalShaders.metal",
+            "src/Rendering/Metal/Shaders/VertShaderSrcBlend.metal",
+            "src/Rendering/Metal/Shaders/VertShaderSrcMaskedBlend.metal",
+          ],
+        }, {
           "build-phase": "Live2DCubismFramework/copy/Copy Files",
           "inclusions": [
             "Live2DCubismFramework.h",
@@ -139,6 +159,41 @@
       "product": "Products/libLive2DCubismFramework.a",
       "product-type": "library.static",
       "build-phases": [
+        {
+          "kind": "script",
+          "name": "Compile Metal Shaders",
+          "log-environment-variables": true,
+          "input-file-list-paths": [
+            "$(SRCROOT)/SwiftSampleApp/MetalInputs.xcfilelist",
+          ],
+          "output-file-list-paths": [
+            "$(SRCROOT)/SwiftSampleApp/MetalOutputs.xcfilelist",
+          ],
+          "shell": "/bin/sh",
+          "script": [
+            "set -e",
+            "",
+            "SRC_DIR=\"$SRCROOT/Live2DCubismFramework/src/Rendering/Metal/Shaders\"",
+            "AIR_DIR=\"$DERIVED_FILE_DIR/FrameworkShaders/MetalAir\"",
+            "OUT_DIR=\"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/FrameworkShaders/FrameworkMetallibs\"",
+            "",
+            "mkdir -p \"$AIR_DIR\" \"$OUT_DIR\"",
+            "",
+            "for f in \"$SRC_DIR\"/*.metal; do",
+            "  name=$(basename \"$f\" .metal)",
+            "  srcFile=\"$f\"",
+            "  airFile=\"$AIR_DIR/$name.air\"",
+            "  outFile=\"$OUT_DIR/$name.metallib\"",
+            "",
+            "  echo \"Compiling: $name\"",
+            "  xcrun -sdk \"$PLATFORM_NAME\" metal -D CSM_ALPHA_BLEND_MODE=1 -D CSM_COLOR_BLEND_MODE=1 -c \"$srcFile\" -o \"$airFile\"",
+            "  xcrun -sdk \"$PLATFORM_NAME\" metallib \"$airFile\" -o \"$outFile\"",
+            "",
+            "  echo \"Done: $outFile\"",
+            "done",
+            "",
+          ],
+        },
         "compile-sources",
         "frameworks",
         {

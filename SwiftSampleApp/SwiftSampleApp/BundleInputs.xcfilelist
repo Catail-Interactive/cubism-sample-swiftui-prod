@@ -1,0 +1,11 @@
+$(BUILT_PRODUCTS_DIR)/FrameworkShaders/FrameworkMetallibs/FragShaderSrcAlphaBlend.metallib
+$(BUILT_PRODUCTS_DIR)/FrameworkShaders/FrameworkMetallibs/FragShaderSrcBlend.metallib
+$(BUILT_PRODUCTS_DIR)/FrameworkShaders/FrameworkMetallibs/FragShaderSrcColorBlend.metallib
+$(BUILT_PRODUCTS_DIR)/FrameworkShaders/FrameworkMetallibs/FragShaderSrcMaskBlend.metallib
+$(BUILT_PRODUCTS_DIR)/FrameworkShaders/FrameworkMetallibs/FragShaderSrcMaskInvertedBlend.metallib
+$(BUILT_PRODUCTS_DIR)/FrameworkShaders/FrameworkMetallibs/FragShaderSrcMaskInvertedPremultipliedAlphaBlend.metallib
+$(BUILT_PRODUCTS_DIR)/FrameworkShaders/FrameworkMetallibs/FragShaderSrcMaskPremultipliedAlphaBlend.metallib
+$(BUILT_PRODUCTS_DIR)/FrameworkShaders/FrameworkMetallibs/FragShaderSrcPremultipliedAlphaBlend.metallib
+$(BUILT_PRODUCTS_DIR)/FrameworkShaders/FrameworkMetallibs/MetalShaders.metallib
+$(BUILT_PRODUCTS_DIR)/FrameworkShaders/FrameworkMetallibs/VertShaderSrcBlend.metallib
+$(BUILT_PRODUCTS_DIR)/FrameworkShaders/FrameworkMetallibs/VertShaderSrcMaskedBlend.metallib

@@ -171,8 +171,8 @@ Next, copy the Sample app code to the project:
 ### Configure the project to build the framework and the app
 
 > When you are working on this part, make sure you select the right target on the left panel of the project settings. Each target has its own settings.
-
-> Note that if you do not see any build setting item above, try to switch to "All" on the second row of the Build Settings tab. If you see names in constant style, e.g., "SWIFT_OBJC_BRIDGING_HEADER", switch to "Title" from "Names" on the second row. For more details about build settings, check out the [build settings reference](https://developer.apple.com/documentation/xcode/build-settings-reference).
+>
+> If you do not see any build setting item above, try to switch to "All" on the second row of the Build Settings tab. If you see names in constant style, e.g., "SWIFT_OBJC_BRIDGING_HEADER", switch to "Title" from "Names" on the second row. For more details about build settings, check out the [build settings reference](https://developer.apple.com/documentation/xcode/build-settings-reference).
 
 We need to configure the project to build the framework and the app separately. This is probably frustrating because the Xcode UI may be a little complicated to play with. The following is a step-by-step list to configure the project. Note that this configuration is not complete yet, and we will come back to it when we see compilation errors later.
 
@@ -384,8 +384,10 @@ At this point, the compiler starts complaining about undefined symbols in the ap
 ### Migrate to SwiftUI: Remove SceneDelegate and New States
 
 > You can find the patched files in [SwiftSampleApp/Live2DCubismSample/src](SwiftSampleApp/Live2DCubismSample/src).
-
-> For your reference, we keep a copy of the changes we made in [changes.patch](changes.patch). It may help you find where to patch the source code. Note that the best source of truth is still your compiler and its error messages. Also, Xcode does not report compiler errors in Objective-C/C++ code, only issues and warnings. Check the Xcode Issue Navigator for any glaring issues in those files.
+>
+> For your reference, we also keep a copy of the changes we made in [changes.patch](changes.patch). It may help you find where and how to patch the source code. Because the file may be incomplete, the best source of truth is still your compiler and its error messages. Keep trying and addressing issues iteratively.
+>
+> Also, Xcode does not report compiler errors in some Objective-C/C++ code, only issues and warnings. Check the Xcode Issue Navigator for any glaring issues in those files.
 
 The original sample code is based on UIKit and comes with SceneDelegate. This is the UIKit way to manage the life-cycle events in a scene ([see UISceneDelegate](https://developer.apple.com/documentation/uikit/uiscenedelegate)). SwiftUI has a new life-cycle system to manage the scene, so we no longer need the scene delegate in our project. To remove it from our project:
 

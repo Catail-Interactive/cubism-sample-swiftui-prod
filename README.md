@@ -1,5 +1,7 @@
 # Tutorial: How to Run Live2D Cubism Native Sample in SwiftUI
 
+![a simulator screenshot that shows the app running in SwiftUI](figures/show-swiftui-overlay.webp)
+
 ## Introduction
 
 This post talks about how to build a SwiftUI Xcode project from [Live2D Cubism SDK for Native](https://www.live2d.com/en/sdk/about/). The SDK provides a UIKit-based app sample for iOS devices (the Sample app). However, probably to meet the cross-platform requirement, the Sample app is built with a [cmake](https://cmake.org/)-generated Xcode project that internally references various source code and assets in the SDK folder. This design makes it challenging to manage project configurations, such as Xcode build settings, build phases, code files and assets, with source control. Unless you plan to build an app without messing with Xcode at all, most likely you'd have to build an Xcode project from scratch.
@@ -541,6 +543,8 @@ $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/FrameworkMetallibs/Vert
 ### Build and test on a simulator and a physical device
 
 Congrats! You should be able to build and run the app successfully in a simulator or a physical device! All the functionality should be the same (drag to track, tap to play a motion, tap the gear to change to the next model, etc.), except some issues with certain Live2D models (see Limitations below). From this project, you can start building new features with Swift/SwiftUI. You can also try to rewrite the view controller and app delegate for better state management, especially when you want to build other features in your app.
+
+![a screenshot that shows the app runs in an iPhone simulator](figures/run-in-simulator.webp)
 
 ## Limitations
 

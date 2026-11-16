@@ -83,6 +83,7 @@
         },
       ],
     },
+    { "path": "Live2DCubismCore.xcframework", "target-membership": [ "Live2DCubismFramework/frameworks" ] },
   ],
   "targets": [
     {
@@ -125,9 +126,13 @@
         "SWIFT_APPROACHABLE_CONCURRENCY": "YES",
         "SWIFT_DEFAULT_ACTOR_ISOLATION": "MainActor",
         "SWIFT_EMIT_LOC_STRINGS": "YES",
+        "SWIFT_OBJC_BRIDGING_HEADER": "Live2DCubismSample/src/cubism_bridge_header.h",
+        "SWIFT_OBJC_INTEROP_MODE": "objcxx",
         "SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY": "YES",
         "SWIFT_VERSION": "5.0",
+        "SYSTEM_HEADER_SEARCH_PATHS": "Live2DCubismFramework/src",
         "TARGETED_DEVICE_FAMILY": "1,2,7",
+        "USER_HEADER_SEARCH_PATHS": "Live2DCubismSample/stb",
       },
     }, {
       "name": "Live2DCubismFramework",
@@ -151,7 +156,9 @@
         "PRODUCT_NAME": "$(TARGET_NAME)",
         "SDKROOT": "iphoneos",
         "SKIP_INSTALL": "YES",
+        "SYSTEM_HEADER_SEARCH_PATHS": "Live2DCubismFramework/src",
         "TARGETED_DEVICE_FAMILY": "1,2",
+        "USER_HEADER_SEARCH_PATHS": "Live2DCubismFramework/src/**",
         "VALIDATE_PRODUCT[config=Release]": "YES",
       },
     },

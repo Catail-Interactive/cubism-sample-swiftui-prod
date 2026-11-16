@@ -55,11 +55,6 @@
             "src/Rendering/Metal/Shaders/VertShaderSrcBlend.metal",
             "src/Rendering/Metal/Shaders/VertShaderSrcMaskedBlend.metal",
           ],
-        }, {
-          "build-phase": "Live2DCubismFramework/copy/Copy Files",
-          "inclusions": [
-            "Live2DCubismFramework.h",
-          ],
         },
       ],
     }, {

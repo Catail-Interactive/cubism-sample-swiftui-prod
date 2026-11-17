@@ -1,5 +1,7 @@
 # Tutorial: How to Run Live2D Cubism Native Sample in SwiftUI
 
+> This repository does not include a copy of the Live2D Cubism Native SDK (the Core, the Framework, or the Sample). To follow the tutorial, download the SDK from [the Live2D Cubism official website](https://www.live2d.com/), unzip it, and copy the required source code files and assets into the Xcode project. The repository only keeps a shallow file structure for your reference.
+
 ![a simulator screenshot that shows the app running in SwiftUI](figures/show-swiftui-overlay.webp)
 Figure: The app run with a SwiftUI overlay.
 

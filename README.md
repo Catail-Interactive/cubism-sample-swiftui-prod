@@ -1,6 +1,7 @@
 # Tutorial: How to Run Live2D Cubism Native Sample in SwiftUI
 
 ![a simulator screenshot that shows the app running in SwiftUI](figures/show-swiftui-overlay.webp)
+Figure: The app run with a SwiftUI overlay.
 
 ## Introduction
 
@@ -389,15 +390,18 @@ At this point, the compiler starts complaining about undefined symbols in the ap
 >
 > Also, Xcode does not report compiler errors in some Objective-C/C++ code, only issues and warnings. Check the Xcode Issue Navigator for any glaring issues in those files.
 
+![an illustration that shows the before and after patterns](figures/scene-to-app.webp)
+Figure: The Pattern Before and After the Migration.
+
 The original sample code is based on UIKit and comes with SceneDelegate. This is the UIKit way to manage the life-cycle events in a scene ([see UISceneDelegate](https://developer.apple.com/documentation/uikit/uiscenedelegate)). SwiftUI has a new life-cycle system to manage the scene, so we no longer need the scene delegate in our project. To remove it from our project:
 
 1. Remove SceneDelegate.mm and SceneDelegate.h from `Live2DCubismSample/src`.
 1. Remove scene-related imports and processes from the source code.
 1. Move states managed by the scene delegate to somewhere else.
 
-The first step should be easy; however, the other two steps may be ambiguous. Here comes the most difficult part of this tutorial: we need to replace the scene delegate and transfer its responsibility to somewhere else, such as AppDelegate. Here we briefly explain what we did to those files. If you get lost, you can just download a complete copy of those files from our repository. See [SwiftSampleApp/Live2DCubismSample/src](SwiftSampleApp/Live2DCubismSample/src) for more details.
+The first step should be easy; however, the other two steps may be ambiguous. Here comes the most difficult part of this tutorial: we need to replace the scene delegate and transfer its responsibility to somewhere else, such as AppDelegate. If you get lost, you can just download a complete copy of those files from our repository. See [SwiftSampleApp/Live2DCubismSample/src](SwiftSampleApp/Live2DCubismSample/src) for more details.
 
-Here is the work:
+Here is what we did during the migration:
 
 1. Remove scene-related processes from AppDelegate.
 1. Keep a reference of ViewController and an LAppTextureManager in AppDelegate.
@@ -553,6 +557,7 @@ $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/FrameworkMetallibs/Vert
 Congrats! You should be able to build and run the app successfully in a simulator or a physical device! All the functionality should be the same (drag to track, tap to play a motion, tap the gear to change to the next model, etc.), except some issues with certain Live2D models (see Limitations below). From this project, you can start building new features with Swift/SwiftUI. You can also try to rewrite the view controller and app delegate for better state management, especially when you want to build other features in your app.
 
 ![a screenshot that shows the app runs in an iPhone simulator](figures/run-in-simulator.webp)
+Figure: The app run in an iPhone simulator.
 
 ## Limitations
 

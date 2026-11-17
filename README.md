@@ -559,6 +559,14 @@ Congrats! You should be able to build and run the app successfully in a simulato
 ![a screenshot that shows the app runs in an iPhone simulator](figures/run-in-simulator.webp)
 Figure: The app run in an iPhone simulator.
 
+## Conclusion
+
+In this post, we walked through how to turn the Cubism Native Sample app into a SwiftUI Xcode project. We built an XCFramework from the Cubism Core, added the Cubism Framework as a static library target, and configured the project to compile Objective-C/C++ code next to Swift. To make the code work in SwiftUI, we removed the UIKit SceneDelegate and transferred its functions accordingly to the AppDelegate. Finally, we wrote a simple SwiftUI wrapper to run the app with the same Cubism Native workflow.
+
+Keep in mind that this app is still a UIKit sample wearing a SwiftUI coat. Much of the legacy logic is intact, a few warnings remain, and some Live2D models may not render correctly. For a production app, you'll probably want to go further: clean up the ARC issues, trim the Objective-C/C++ code down to a thin wrapper, and expose a Swift-friendly interface for controlling the Live2D model.
+
+We hope this tutorial gives you a solid starting point.
+
 ## Limitations
 
 The SwiftUI sample app is based on the original Sample app. The overall logic should be almost the same as the original one, including control, view, state, resource, and asset management. Because the logic is not optimized for SwiftUI, the app may have performance issues or produce inconsistent results in SwiftUI views. We also found some Live2D models did not work in the SwiftUI app due to unknown shader issues.

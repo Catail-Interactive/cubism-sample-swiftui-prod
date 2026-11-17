@@ -262,12 +262,6 @@
         },
         "compile-sources",
         "frameworks",
-        {
-          "kind": "copy",
-          "name": "Copy Files",
-          "bundle-base-path": "build-products-directory",
-          "relative-path": "include/$(PRODUCT_NAME)",
-        },
       ],
       "build-settings": {
         "CODE_SIGN_STYLE": "Automatic",

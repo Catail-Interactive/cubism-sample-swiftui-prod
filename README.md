@@ -39,7 +39,7 @@ This post is a hands-on tutorial about how to build a SwiftUI Xcode project from
 - Compile everything in Xcode
   - Compile Metal shader code (.metal) to libraries (.metallib)
   - Compile the Framework
-  - Clean up and compile the Sample app code
+  - Compile the Sample app code
 - Build a SwiftUI app from the UIKit Sample app
   - Migrate to SwiftUI: Remove SceneDelegate and New States
   - Wire up the AppDelegate and ViewController to SwiftUI
@@ -331,6 +331,9 @@ We will add these files to our app bundle later. Now, let's get Xcode to compile
 
 ### Compile the Framework
 
+![The complete build phases list in the framework](figures/complete-build-phases-framework.webp)
+Figure. The complete build phases list in the framework.
+
 We just copied multiple source files from the Framework to our static library `Live2DCubismFramework`. If you try to build it, you should see a bunch of error messages about "ARC" or the "release" and "autorelease" keywords. ARC stands for _Automatic Reference Counting_, a memory management system used by Swift and Objective-C in Xcode. In our project here, you only need to know that ARC does not like you manually calling keywords like `release` to manage memory by hand.
 
 > You can learn more about ARC from [this WWDC video](https://developer.apple.com/videos/play/wwdc2021/10216/) or [the wiki page](https://en.wikipedia.org/wiki/Automatic_Reference_Counting).
@@ -350,7 +353,10 @@ After setting the flag, our `Live2DCubismFramework` should compile successfully!
 
 > ...and, there are a LOT of issues and warnings. They are mostly about some parameters not found in the declaration. If you have time, or really want to use it in production, we'd suggest that you go over the code and address them accordingly, including the ARC issue.
 
-### Clean up and compile the Sample app code
+### Compile the Sample app code
+
+![the complete build phase list in the app target](figures/complete-build-phases-app.webp)
+Figure. The complete build phase list in the app target.
 
 The next challenging task is compiling the Sample app code in Xcode. This is very similar to the Framework compilation task above except we need to link additional libraries and patch part of the code. If you try to build the app target, you will see these kinds of errors flying around.
 

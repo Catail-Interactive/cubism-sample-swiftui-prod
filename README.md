@@ -3,11 +3,11 @@
 ![a simulator screenshot that shows the app running in SwiftUI](figures/show-swiftui-overlay.webp)
 Figure: The app running with a SwiftUI overlay.
 
+## Introduction
+
 > This repository does not include a copy of the Live2D Cubism Native SDK (the Core, the Framework, or the Sample). To follow the tutorial, download the SDK from [the Live2D Cubism official website](https://www.live2d.com/), unzip it, and copy the required source code files and assets into the Xcode project. The repository only keeps a shallow file structure for your reference.
 >
 > You can find the up-to-date tutorial here: [https://www.amiverse.app/en-us/blog/how-to-use-cubism-sdk-swiftui](https://www.amiverse.app/en-us/blog/how-to-use-cubism-sdk-swiftui)
-
-## Introduction
 
 This repository hosts examples from [our blog tutorial](https://www.amiverse.app/en-us/blog/how-to-use-cubism-sdk-swiftui) about how to build a SwiftUI Xcode project from [Live2D Cubism SDK for Native](https://www.live2d.com/en/sdk/about/). The SDK provides a UIKit-based app sample for iOS devices (the Sample app). The Sample app is built with a [cmake](https://cmake.org/)-generated Xcode project that internally references various source code files and assets in the SDK folder. This design makes it challenging to manage project configurations, such as Xcode build settings, build phases, code files, and assets, with source control. Unless you plan to build an app without touching Xcode at all, you will most likely have to build an Xcode project from scratch.
 
